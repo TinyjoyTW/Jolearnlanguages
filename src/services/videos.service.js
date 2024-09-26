@@ -1,6 +1,6 @@
 import axios from "axios";
 
-class AuthService {
+class VideosService {
   constructor() {
     this.api = axios.create({
       baseURL:
@@ -9,26 +9,16 @@ class AuthService {
     });
     this.api.interceptors.request.use((config) => {
       const storedToken = localStorage.getItem("authToken");
-
       if (storedToken) {
         config.headers = { Authorization: `Bearer ${storedToken}` };
       }
       return config;
     });
   }
-
-  signup = (requestBody) => {
-    return this.api.post("/auth/signup", requestBody);
-  };
-
-  login = (requestBody) => {
-    return this.api.post("/auth/login", requestBody);
-  };
-
-  verify = () => {
-    return this.api.get("/auth/verify");
+  getAllVideos = () => {
+    return this.api.get("/api/videos");
   };
 }
 
-const authService = new AuthService();
-export default authService;
+const videosService = new VideosService();
+export default videosService;

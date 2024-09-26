@@ -1,6 +1,6 @@
 import axios from "axios";
 
-class AuthService {
+class UsersService {
   constructor() {
     this.api = axios.create({
       baseURL:
@@ -17,18 +17,18 @@ class AuthService {
     });
   }
 
-  signup = (requestBody) => {
-    return this.api.post("/auth/signup", requestBody);
+  getAllNonAdminUsers = () => {
+    return this.api.get("/api/non-admin-users");
+  }
+
+  getSumOfNonAdminUsers = () => {
+    return this.api.get("/api/sum-of-non-admin-users");
   };
 
-  login = (requestBody) => {
-    return this.api.post("/auth/login", requestBody);
-  };
-
-  verify = () => {
-    return this.api.get("/auth/verify");
-  };
+  getOneUser = (id) => {
+    return this.api.get(`/api/users/${id}`);
+  }
 }
 
-const authService = new AuthService();
-export default authService;
+const usersService = new UsersService();
+export default usersService;

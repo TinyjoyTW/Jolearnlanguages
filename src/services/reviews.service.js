@@ -1,6 +1,6 @@
 import axios from "axios";
 
-class AuthService {
+class ReviewsService {
   constructor() {
     this.api = axios.create({
       baseURL:
@@ -16,19 +16,10 @@ class AuthService {
       return config;
     });
   }
-
-  signup = (requestBody) => {
-    return this.api.post("/auth/signup", requestBody);
-  };
-
-  login = (requestBody) => {
-    return this.api.post("/auth/login", requestBody);
-  };
-
-  verify = () => {
-    return this.api.get("/auth/verify");
+  getSumOfReviews = () => {
+    return this.api.get("/api/sum-of-reviews");
   };
 }
 
-const authService = new AuthService();
-export default authService;
+const reviewsService = new ReviewsService();
+export default reviewsService;
